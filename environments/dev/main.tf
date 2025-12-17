@@ -24,4 +24,11 @@ module "governance" {
   resource_group_id  = azurerm_resource_group.dev_rg.id
   allowed_locations  = ["australiaeast"]
 }
+module "monitoring" {
+  source              = "../../modules/monitoring"
+  resource_group_name = azurerm_resource_group.dev_rg.name
+  location            = var.location
+}
+
+
 
