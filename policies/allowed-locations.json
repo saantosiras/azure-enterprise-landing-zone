@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "displayName": "Allowed Azure Regions",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "This policy restricts resources to approved Azure regions only.",
+    "parameters": {
+      "allowedLocations": {
+        "type": "Array",
+        "metadata": {
+          "description": "The list of allowed Azure regions",
+          "displayName": "Allowed locations"
+        }
+      }
+    },
+    "policyRule": {
+      "if": {
+        "not": {
+          "field": "location",
+          "in": "[parameters('allowedLocations')]"
+        }
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
